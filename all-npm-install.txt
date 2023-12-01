@@ -1,0 +1,27 @@
+    {npx create-next-app --typescript}
+npm install -D tailwindcss postcss autoprefixer
+    {npm tailwindcss init -p}
+npm install react-icons
+
+    (pour gerer le register)
+npm intall zustand
+
+    (pour gerer une erreur)
+npm install react-hot-toast
+
+    (gerer base donnees)
+npm i -D prisma
+
+    (authentification bbd)
+npm install next-auth @prisma/client @next-auth/prisma-adapter
+npm install bcrypt
+npm install -D @types/bcrypt
+
+    (gerer les categories query)
+npm install query-string
+
+    (gerer les images uploads)
+npm install next-cloudinary
+
+    (gerer mes dates des réservations AirBnb, donc inutiles?)
+npm install date-fns
