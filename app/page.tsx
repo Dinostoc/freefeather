@@ -9,6 +9,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 export default async function Home() {
   const listings = await getListings();
   const currentUser = await getCurrentUser();
+  
 
   if (listings.length == 0) {
     return (
@@ -21,18 +22,21 @@ export default async function Home() {
     //<div className="text-rose-500 text-2xl">I am in the page page (/è v é)/</div>
     <ClientOnly>
       <Container>
+        <div className="font-semibold text-xl pt-24">
+        Les récentes paruptions
+        </div>
         <div className="
-          pt-24
+          pt-9
           grid
           grid-cols-2
-          sm:grid-cols-5
-          md-grid-cols-5
+          sm:grid-cols-6
+          md-grid-cols-6
           lg-grid-cols-6
           xl-grid-cols-7
           2xl-grid-cols-8
           gap-8
           ">
-            {listings.map((listing: any) =>{
+            {listings.map((listing) =>{
               return (
                 <ListingCard
                   currentUser={currentUser}
