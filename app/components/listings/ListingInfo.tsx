@@ -2,6 +2,7 @@
 
 import { SafeUser } from "@/app/types";
 import Avatar from "../Avatar";
+import { useRouter } from "next/navigation";
 
 interface ListingInfoProps {
     user: SafeUser;
@@ -18,17 +19,20 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     author,
     price
 }) => {
+    const router = useRouter();
 
     return (
         <div className="col-span-6 flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-                <div className="
+                <div onClick={() => router.push(`/users/${user.id}`)}
+                    className="
                     text-xl
                     font-semibold
                     flex
                     flex-row
                     items-center
                     gap-2
+                    cursor-pointer
                     ">
                     <div> Par {author} </div>
                     <Avatar src={user?.image} />
