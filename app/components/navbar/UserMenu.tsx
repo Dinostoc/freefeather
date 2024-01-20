@@ -12,6 +12,7 @@ import useSellModal from '@/app/hooks/useSellModal';
 
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -22,6 +23,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const sellModal = useSellModal();
@@ -133,7 +135,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     {currentUser ? (
                         <>
                             <MenuItem
-                                onClick={() => {}}
+                                onClick={() => router.push(`/users/${currentUser.id}`)}
                                 label="Mon compte"
                             />
                             <MenuItem
@@ -145,8 +147,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 label="Mes commandes"
                             />
                             <MenuItem
-                                onClick={() => {}}
-                                label="Mes favories"
+                                onClick={() => router.push('/favorites')}
+                                label="Mes favoris"
                             />
                             <MenuItem
                                 onClick={() => signOut()}
