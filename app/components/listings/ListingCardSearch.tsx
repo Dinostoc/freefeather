@@ -19,7 +19,7 @@ interface ListingCardProps {
   currentUser?: SafeUser | null;
 }
 
-const ListingCard: React.FC<ListingCardProps> = ({
+const ListingCardSearch: React.FC<ListingCardProps> = ({
   data,
   reservation,
   onAction,
@@ -126,4 +126,4 @@ const ListingCard: React.FC<ListingCardProps> = ({
   );
 };
 
-export default ListingCard;
+export default ListingCardSearch;

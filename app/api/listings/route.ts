@@ -34,7 +34,7 @@ export async function POST(
             title,
             description,
             author,
-            imageSrc,            
+            imageSrc,
             category,
             price: parseInt(price, 10),
             userId: currentUser.id
