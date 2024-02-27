@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import useCartStore from "@/app/hooks/useCartStore";
 import { SafeListing, SafeUser } from "@/app/types";
@@ -12,24 +12,23 @@ import HeartButton from "../HeartButton";
 //import { format } from 'date-fns';
 
 interface ListingCardProps {
-    data: SafeListing;
-    reservation?: Reservation;
-    onAction?: (id: string) => void;
-    disabled?: boolean;
-    actionLabel?: string;
-    actionId?: string;
-    currentUser?: SafeUser | null;
-    
+  data: SafeListing;
+  reservation?: Reservation;
+  onAction?: (id: string) => void;
+  disabled?: boolean;
+  actionLabel?: string;
+  actionId?: string;
+  currentUser?: SafeUser | null;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
-    data,
-    reservation,
-    onAction,
-    disabled,
-    actionLabel,
-    actionId = "",
-    currentUser,
+  data,
+  reservation,
+  onAction,
+  disabled,
+  actionLabel,
+  actionId = "",
+  currentUser,
 }) => {
     const router = useRouter();
 
@@ -44,36 +43,36 @@ const ListingCard: React.FC<ListingCardProps> = ({
         }, [data, addItemToCart]
     );
 
-    const handleCancel = useCallback(
-        (e: React.MouseEvent<HTMLButtonElement>) => {
-            e.stopPropagation();
+  const handleCancel = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
 
-            if (disabled) {
-                return ;
-            }
+      if (disabled) {
+        return;
+      }
 
-            onAction?.(actionId);
-        }, [onAction, actionId, disabled]
-    )
+      onAction?.(actionId);
+    },
+    [onAction, actionId, disabled]
+  );
 
-    const price = useMemo(() => {
-        if (reservation) {
-            return reservation.totalPrice;
-        }
+  const price = useMemo(() => {
+    if (reservation) {
+      return reservation.totalPrice;
+    }
 
-        return data.price;
-    }, [reservation, data.price]);
+    return data.price;
+  }, [reservation, data.price]);
 
+  const imageSrc = useMemo(() => {
+    if (data.imageSrc != "") {
+      return data.imageSrc;
+    } else {
+      return "/images/book_placeholder.jpg";
+    }
+  }, [data.imageSrc]);
 
-    const imageSrc = useMemo(() => {
-        if (data.imageSrc != '') {
-            return data.imageSrc;
-        } else {
-            return "/images/book_placeholder.jpg";
-        }        
-    }, [data.imageSrc]);
-
-    /*const reservationDate = useMemo(() => {
+  /*const reservationDate = useMemo(() => {
         if (!reservation) {
             return null;
         }
@@ -83,12 +82,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
         return `${format(start, 'PP')} - ${format(end, 'PP')}`
     }, [reservation])*/
-    
 
-    return (
-        <div onClick={() => router.push(`/listings/${data.id}`)}
-            //className="col-span-1 cursor-pointer group
-            className="max-w-[300px] 
+  return (
+    <div
+      onClick={() => router.push(`/listings/${data.id}`)}
+      //className="col-span-1 cursor-pointer group
+      className="max-w-[300px] 
             p-1.5
             group
             border-2
@@ -107,13 +106,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     relative
                     overflow-hidden
                     rounded-xl
-                    ">
-                    <Image
-                        fill
-                        alt="Listings"
-                        src={imageSrc}
-                        sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
-                        className="
+                    "
+        >
+          <Image
+            fill
+            alt="Listings"
+            src={imageSrc}
+            sizes="(max-width: 768px) 10vw, (max-width: 1200px) 50vw, 33vw"
+            className="
                             object-cover
                             h-full
                             w-full
