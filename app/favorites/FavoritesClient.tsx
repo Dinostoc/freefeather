@@ -16,7 +16,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
         <Container>
             <Heading
                 title="Favoris"
-                subtitle="Liste des oeuvres ajoutées en favories !"
+                subtitle="Liste des oeuvres ajoutées en favoris !"
             />
             <div className="
                 mt-10

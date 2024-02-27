@@ -1,25 +1,39 @@
 'use client'
 
-import { SafeUser } from "@/app/types";
-import Avatar from "../Avatar";
+import useCartStore from "@/app/hooks/useCartStore";
+import { SafeListing, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import AddCartButton from "../AddCartButton";
+import Avatar from "../Avatar";
 
 interface ListingInfoProps {
     user: SafeUser;
+    data: SafeListing;
     description: string;
     author: string;
     price: number;
+    id: string;
 
 }
 
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
     user,
+    data,
     description,
     author,
-    price
+    price,
+    id
 }) => {
     const router = useRouter();
+
+    const { addItemToCart } = useCartStore();
+    const onAddToCart = () => {
+        addItemToCart(data);
+        toast.success("Added to cart");
+    };
+
 
     return (
         <div className="col-span-6 flex flex-col gap-4">
@@ -60,7 +74,40 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
             <div className="flex flex-row text-xl items-center pt-6 font-semibold">
                         Prix : {price} €
-                </div>
+            </div>
+
+            {/* <button 
+            onClick={() => {console.log("Clique panié")}}
+            className="
+                bg-[#efa568]
+                text-white
+                mt-5
+                py-1
+                px-9
+                rounded-full
+                cursor-pointer
+                flex
+                justify-center
+                items-center
+                w-60
+                h-10">
+                          
+                <FaShoppingCart
+                size={20}
+                className="
+                    relative                    
+                    right-3            
+                    "
+                    /> Ajouter au panier                
+            </button> */}
+            <AddCartButton 
+                listingId={id}
+                currentUser={user}
+                onClick={onAddToCart}
+                //onClick={() =>{console.log("Clique panié")}}
+             />
+                        
+            
             
         </div>
     )

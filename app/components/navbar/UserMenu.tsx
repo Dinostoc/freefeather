@@ -1,17 +1,17 @@
 'use client';
 
-import { AiOutlineMenu } from 'react-icons/ai';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import Avatar from '../Avatar';
 import { useCallback, useState } from 'react';
+import { AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
+import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 
-import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useSellModal from '@/app/hooks/useSellModal';
 
-import { signOut } from 'next-auth/react';
+import useCartStore from '@/app/hooks/useCartStore';
 import { SafeUser } from '@/app/types';
+import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 
@@ -28,6 +28,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const loginModal = useLoginModal();
     const sellModal = useSellModal();
     const [isOpen, setIsOpen] = useState(false);
+
+    const { cartItems } = useCartStore();
+    const cartCount = cartItems.reduce((acc, current) => acc + current.quantity, 0);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
@@ -60,7 +63,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 ">
                     Vendez vos oeuvres
             </div>
-            <div onClick={() => {console.log("Voici votre panier")}}
+            <div onClick={() => router.push('/cart')}
                 className='
                 relative
                 md:block
@@ -72,7 +75,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 cursor-pointer
                 '>
                 <AiOutlineShoppingCart size={22}/>
-                <div className='
+                {/* Affichage du compteur du panier seulementi si il contient des elements */}
+                {cartItems.length > 0 ? 
+                    <div className='
                     absolute
                     text-[10px]
                     top-[6px]
@@ -81,19 +86,19 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     min-w-[14px]
                     h-[14px]
                     rounded-full
-                    text-white
-                                  
+                    text-white     
                     '>
-                    <div className='
-                        flex
-                        items-center
-                        justify-center
-                        -mt-[1px]                        
-                        '>
-                            1
+                        <div className='
+                            flex
+                            items-center
+                            justify-center
+                            -mt-[1px]                        
+                            '>
+                                {cartCount}
+                        </div>
                     </div>
+                : null}
 
-                </div>
             </div>
             <div onClick={toggleOpen}
                 className="
@@ -139,7 +144,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 label="Mon compte"
                             />
                             <MenuItem
-                                onClick={() => {}}
+                                //onClick={() => router.push('/cart')}
+                                onClick={() => {console.log(cartItems)}}
                                 label="Panier"
                             />
                             <MenuItem

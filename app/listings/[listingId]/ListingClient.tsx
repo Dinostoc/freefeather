@@ -1,13 +1,11 @@
 'use client'
 
-import { categories } from "@/app/components/navbar/Categories";
-import { SafeListing, SafeUser } from "@/app/types";
-import { Listing } from "@prisma/client";
 import Container from "@/app/components/Container";
-import { useMemo } from "react";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
-import { list } from "postcss";
+import { categories } from "@/app/components/navbar/Categories";
+import { SafeListing, SafeUser } from "@/app/types";
+import { useMemo } from "react";
 
 interface ListingClientProps {
     //reservation?: Reservation[];
@@ -47,10 +45,12 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         ">
                         <ListingInfo
                             user={listing.user}
+                            data={listing}
                             //category={category}
                             description={listing.description}
                             author={listing.author}
                             price={listing.price}
+                            id={listing.id}
                         />
                         </div>
             </div>

@@ -1,12 +1,14 @@
 'use client'
 
-import { SafeUser, SafeListing } from "@/app/types";
-import { Listing, Reservation } from "@prisma/client";
+import useCartStore from "@/app/hooks/useCartStore";
+import { SafeListing, SafeUser } from "@/app/types";
+import { Reservation } from "@prisma/client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
-import Image from "next/image";
+import toast from "react-hot-toast";
+import AddCartButton from "../AddCartButton";
 import HeartButton from "../HeartButton";
-import Button from "../Button";
 //import { format } from 'date-fns';
 
 interface ListingCardProps {
@@ -30,6 +32,17 @@ const ListingCard: React.FC<ListingCardProps> = ({
     currentUser,
 }) => {
     const router = useRouter();
+
+    const { addItemToCart } = useCartStore();
+
+    const onAddToCart = useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>) => {
+            e.stopPropagation();
+            console.log("Add to cart");
+            addItemToCart(data);
+            toast.success("Added to cart");
+        }, [data, addItemToCart]
+    );
 
     const handleCancel = useCallback(
         (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -83,9 +96,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             hover:border-gray-400
             hover:shadow-xl
             rounded-lg
+            cursor-pointer
         ">
             <div className="flex flex-col gap-2 w-full">
-                <div className="
+                <div 
+                    // onClick={() => router.push(`/listings/${data.id}`)}
+                    className="
                     aspect-book-cover
                     w-full
                     relative
@@ -117,8 +133,33 @@ const ListingCard: React.FC<ListingCardProps> = ({
                 <div className="font-light text-neutral-500">
                     {data.author}
                 </div>
-                <div className="flex flex-row items-center gap-1 font-semibold">
-                        {price} €
+                <div className="items-center gap-1 font-semibold">
+                    {price} €
+
+                    {/* <button onClick={onAddToCart}
+                        title="Add to Cart"
+                        className="
+                        bg-[#efa568]
+                        text-white
+                        float-right
+                        py-3
+                        px-3
+                        rounded-full
+                        cursor-pointer
+                        flex
+                        justify-center
+                        items-center
+                        w-20
+                        h-8
+                        ">
+                    </button> */}
+                    <AddCartButton
+                        listingId={data.id}
+                        currentUser={currentUser}
+                        small
+                        onClick={onAddToCart}
+                        // onClick={() =>{console.log("Clique panié")}}
+                    />
                 </div>
                 {/*{onAction && actionLabel && (
                     <Button
@@ -126,6 +167,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                         smalllabel={actionLabel}
                         onClick={handleCancel}
                 )}*/}
+                
             </div>
         </div>
     )
