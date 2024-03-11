@@ -7,8 +7,8 @@ import { categories } from "@/app/components/navbar/Categories";
 import { SafeListing, SafeUser } from "@/app/types";
 import { useMemo } from "react";
 
+
 interface ListingClientProps {
-    //reservation?: Reservation[];
     listing: SafeListing & {user: SafeUser};
 
     currentUser?: SafeUser | null;
@@ -52,7 +52,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                             price={listing.price}
                             id={listing.id}
                         />
-                        </div>
+                </div>
             </div>
         </Container>
     )

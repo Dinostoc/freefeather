@@ -4,6 +4,7 @@ import useCartStore from "@/app/hooks/useCartStore";
 import { SafeListing, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import ReactStars from "react-stars";
 import AddCartButton from "../AddCartButton";
 import Avatar from "../Avatar";
 
@@ -76,30 +77,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                         Prix : {price} €
             </div>
 
-            {/* <button 
-            onClick={() => {console.log("Clique panié")}}
-            className="
-                bg-[#efa568]
-                text-white
-                mt-5
-                py-1
-                px-9
-                rounded-full
-                cursor-pointer
-                flex
-                justify-center
-                items-center
-                w-60
-                h-10">
-                          
-                <FaShoppingCart
-                size={20}
-                className="
-                    relative                    
-                    right-3            
-                    "
-                    /> Ajouter au panier                
-            </button> */}
+            {/* Etoiles pour les reviews */}
+            <ReactStars 
+                    count={5} 
+                    size={24} 
+                    color2={'#ffd700'} 
+            /> 
+
             <AddCartButton 
                 listingId={id}
                 currentUser={user}

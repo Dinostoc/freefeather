@@ -4,41 +4,31 @@ import { usePathname, useSearchParams } from "next/navigation";
 import CategoryBox from "../CategoryBox";
 import Container from "../Container";
 
+
 export const categories = [
     {
-        label: 'Roman et littérature',
-        description: 'Un roman classique'
+        label: 'A propos',
+        description: 'A propos de nous'
     },
     {
-        label: 'Policier',
-        description: 'Un roman policier'
+        label: 'Livres',
+        description: 'Tous les livres disponibles'
     },
     {
-        label: 'Art',
-        description: 'Un livre sur l art'
+        label: 'Auteurs',
+        description: 'La liste des auteurs'
     },
     {
-        label: 'Histoire',
-        description: 'Un livre sur l histoire'
-    },
-    {
-        label: 'Bande dessinée',
-        description: 'Une bande dessinée'
-    },
-    {
-        label: 'Fantasy',
-        description: 'Un roman policier'
-    },
-    {
-        label: 'Science-fiction',
-        description: 'Un roman policier'
-    },
+        label: 'Contact',
+        description: 'Nos coordonnées'
+    }
 ]
 
 const Categories = () => {
     const params = useSearchParams();
     const category = params?.get('category');
     const pathname = usePathname();
+  
 
     const isMainPage = pathname == '/';
 

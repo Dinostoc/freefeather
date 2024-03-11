@@ -68,14 +68,75 @@ const Cart = () => {
           
             {cartItems?.map((item) => (
               // <CartItemCard product={item} />
-              <div>
-              <ListingCard
-                              currentUser={null}
-                              key={item.id}
-                              data={item}
-                          />
-              <button onClick={() => onIncreaseQuantity(item.id)}>+</button>
-              <button onClick={() => onDecreaseQuantity(item.id)}>-</button>
+              <div className="
+                relative
+              ">
+                <ListingCard
+                  currentUser={null}
+                  key={item.id}
+                  data={item}
+                />
+                            
+                <div className="
+                  flex
+                  justify-center
+                  align-center
+                  border-3
+                  shadow-md
+                  w-3/4
+                  top-1/2
+                  left-1/2
+                  translate-x-5
+                  translate-y-1/4
+                ">
+                  <button onClick={() => onDecreaseQuantity(item.id)}
+                  className="
+                    px-0.5
+                    py-0.5
+                    w-12
+                    text-base
+                    text-center
+                    bg-gray-200
+                    rounded
+                    hover:bg-gray-300
+                  ">
+                    -
+                  </button>
+
+                  <input type="text" value={item.quantity}
+                    className="
+                    px-0.5
+                    py-0.5
+                    w-12
+                    text-base
+                    text-center
+                    "/>
+                  <button onClick={() => onIncreaseQuantity(item.id)}
+                    className="
+                    px-0.5
+                    py-0.5
+                    w-12
+                    text-base
+                    text-center
+                    bg-gray-200
+                    rounded
+                    hover:bg-gray-300
+                  ">
+                    +
+                  </button>
+                </div>
+                <button onClick={() => onRemoveItem(item.id)}
+                  className="
+                  mt-2
+                  px-8
+                  text-sm
+                  text-blue-400
+                  hover:text-blue-500
+                  underline
+                  underline-offset-2
+                ">
+                  Retirer du panier
+                </button>
               </div>
             ))}
 

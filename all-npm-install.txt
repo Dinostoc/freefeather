@@ -25,3 +25,7 @@ npm install next-cloudinary
 
     (gerer mes dates des réservations AirBnb, donc inutiles?)
 npm install date-fns
+
+    (gerer les star reviews)
+npm i react-stars
+npm i --save-dev @types/react-stars

@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
+import { PiUserSwitch } from "react-icons/pi";
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 
@@ -120,8 +121,19 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div className="hidden md:block">
                         <Avatar src={currentUser?.image} />
                     </div>
-                </div>
+            </div>
+
+            <div className="
+                rounded-full
+                hover:bg-blue-100
+                p-1
+                transition
+            ">
+                <PiUserSwitch size={24}/>
+            </div>
+            
         </div>
+        
       
         {isOpen && (
             <div className='
