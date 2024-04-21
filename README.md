@@ -2,23 +2,38 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Les packages à installer sont dans le fichier all-npm-install.txt à la racine du projet.
+Pour un rapide rappel :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -D tailwindcss postcss autoprefixer
+npm install react-icons
+npm intall zustand
+npm install react-hot-toast
+npm i -D prisma
+npm install next-auth @prisma/client @next-auth/prisma-adapter
+npm install bcrypt
+npm install -D @types/bcrypt
+npm install query-string
+npm install next-cloudinary
+npm i react-stars
+npm i --save-dev @types/react-stars
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Pour lancer le projet :
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ouvrir [http://localhost:3000](http://localhost:3000) avec un navigateur web pour voir le projet.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Modification des URL des bases de données
+Les URL à modifier sont dans le fichier .env. 
+Les services utilisés pour l'instant sont MongoDB et Cloudinary.
+
+
+
 
 ## Learn More
 
