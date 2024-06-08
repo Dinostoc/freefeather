@@ -32,7 +32,44 @@ Ouvrir [http://localhost:3000](http://localhost:3000) avec un navigateur web pou
 Les URL à modifier sont dans le fichier .env. 
 Les services utilisés pour l'instant sont MongoDB et Cloudinary.
 
+## MongoDB
+Pour obtenir l'URL de connexion :
+- Créer un compte/se connecter sur MongoDB Atlas.
+- Créer une base de données (choisir le plan de paiement adapté)
+- Dans cette base de données, créer un user admin _username_/_password_, au besoin, mettre O.O.O.O/0 (permission à tous les adresses IP de se connecter à la database, donc attention à ne pas partager l'URL de la base de données.)
+- Cliquer sur 'Connect', puis 'MongoDB for VS Code'. Le lien sera affiché (<password> à remplacer avec celui de _username_)
 
+
+S'assurer d'avoir l'ORM prisma installé. 
+```bash
+npm i -D prisma
+npm prisma init
+```
+
+- Dans le fichier `schema.prisma`, s'assurer d'avoir comme provider = "mongodb"
+- Dans `.env`, changer l'URL en celui obtenu auparavant, et rajouter "/test" à la fin de cet URL
+
+```bash
+npx prisma db push
+```
+
+
+
+## Cloudinary
+Pour mettre en place Cloudinary' :
+- Créer un compte/se connecter sur Cloudinary.
+- Cliquer sur 'Dashboard'
+- Copier votre _Cloud Name_ dans le fichier `.env` dans la variable NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="_Cloud Name_"
+- Aller dans 'Settings' puis 'Upload'
+- Cliquer sur 'Add upload preset'
+- Choisir "Signing mode: Unsigned" et enregistrer ('Save')
+- Copier le nom du preset créé et coller-le dans le return du fichier `app/components/inputs/ImageUpload.tsx`, uploadPreset="_Preset Name_"
+
+
+S'assurer d'avoir Cloudinary installé. 
+```bash
+npm install next-cloudinary
+```
 
 
 ## Learn More
